@@ -9,7 +9,7 @@ Answer:
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Page Not Found &#8211; The Eaton Lab at Columbia University</title>```
-
-Sources-
-[The head command](http://www.linfo.org/head.html)
+<title>Page Not Found &#8211; The Eaton Lab at Columbia University</title>
+```
+Sources-  
+[_The head command_](http://www.linfo.org/head.html)
