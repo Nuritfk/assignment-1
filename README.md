@@ -1,15 +1,17 @@
 # assignment-1
 ## I. Get the data files 
-**Answer:**
-```$ head -5 newfile.txt
-<!doctype html>
+**Answer:**  
+$ curl http://eaton-lab.org/pdsb/test.fastq.gz -o test.fastq.gz    
+$ head -5 test.fastq.gz 
+```<!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
-```
-```$ head -5 oldirisfile.txt
-5.1,3.5,1.4,0.2,Iris-setosa
+```  
+$ curl http://eaton-lab.org/pdsb/iris-data-dirty.csv -o iris-data-dirty.csv    
+$ head -5 iris-data-dirty.csv  
+```5.1,3.5,1.4,0.2,Iris-setosa
 4.9,3.0,1.4,0.2,Iris-setosa
 4.7,3.2,1.3,0.2,Iris-setosa
 4.6,3.1,1.5,0.2,Iris-setosa
@@ -25,7 +27,15 @@ $ curl http://eaton-lab.org/pdsb/iris-data-dirty.csv > iris.txt
 ```$ grep -n NA iris.txt
 73:6.3,NA,4.9,1.5,Iris-versicolor
 89:5.6,NA,4.1,1.3,Iris-versicolor
-```
+```  
+**What are the misspelled words**  
+$ Cut -s -d ',' -f 5 iris-data-dirty.csv | sort | uniq -c  
+     49 Iris-setosa  
+      **1 Iris-setsa**   
+     49 Iris-versicolor    
+     **1 Iris-versicolour**  
+     50 Iris-virginica    
+
 **Lines with misspelled words** 
 ```$ grep -n setsa iris.txt
 12:4.8,3.4,1.6,0.2,Iris-setsa
@@ -77,12 +87,13 @@ superba
 thamno 
 
 **Variable**  
-arr=("cyathophylla" "cyathophylloides" "przewalskii" "rex" "superba " "thamno")  
-**For-loop**  
-$  for item in $arr; do  $ echo $item >> file1 file2 file3 file4 file5 file6 | zcat test.fastq.gz | grep -A3 '^@[0-9]' | cut -d '.' -f 1 | sort | uniq | cut -d '_' -f 2 | sort | uniq ; done
+$ name=$(zcat test.fastq.gz | grep '^@[0-9]'| cut -d '.' -f 1 | sort -nr | uniq -c)   
+**For-loop**   
+$ for name in $name ; do  zcat test.fastq.gz | grep @$name -A 4 > sorted_reads/$name.fastq; done
 
 Sources-  
-Gitter chat 
+Gitter chat   
+Class 
 
 
 
